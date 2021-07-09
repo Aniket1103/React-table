@@ -11,23 +11,23 @@ function Table(){
     getData();
   }, []);
 
-  // const getData = async () => {
-  //   return (
-  //     fetch(url)
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       setData(json);
-  //       console.log(json);
-  //     })
-  //     )
-  // }
-
-  const getData = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    setData(data);
-    console.log(data);
+  const getData = () => {
+    return (
+      fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        setData(json);
+        console.log(json);
+      })
+      )
   }
+
+  // const getData = async () => {
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+  //   setData(data);
+  //   console.log(data);
+  // }
   
   const columns = [
     {
@@ -57,14 +57,14 @@ function Table(){
         // isEditHidden: rowData => rowData.name === 'x',
         // isDeletable: rowData => rowData.name === 'b', // only name(b) rows would be deletable,
         // isDeleteHidden: rowData => rowData.name === 'y',
-        onBulkUpdate: changes => 
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    setData([...data, changes]); 
+        // onBulkUpdate: changes => 
+        //     new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             setData([...data, changes]); 
 
-                    resolve();
-                }, 1000);
-            }),
+        //             resolve();
+        //         }, 1000);
+        //     }),
         onRowAddCancelled: rowData => console.log('Row adding cancelled'),
         onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
         onRowAdd: newData =>
@@ -105,7 +105,8 @@ function Table(){
 
     options = {{
       actionsColumnIndex:-1,
-      addRowPosition:"first"
+      addRowPosition:"first",
+      paging: false
     }}
       />
     </div>
