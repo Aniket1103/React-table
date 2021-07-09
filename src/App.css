@@ -7,7 +7,7 @@
 }
 
 .App-header{
-
+  background-color: rgb(245, 203, 153);
   height: 80px;
   display: flex;
   justify-content: center;
